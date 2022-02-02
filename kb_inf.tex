@@ -1,0 +1,603 @@
+%\Xi 
+\documentclass[t]{beamer}  % [t], [c], или [b] --- вертикальное выравнивание на слайдах (верх, центр, низ)
+%\documentclass[handout]{beamer} % Раздаточный материал (на слайдах всё сразу)
+%\documentclass[aspectratio=169]{beamer} % Соотношение сторон
+
+%\usetheme{Berkeley} % Тема оформления
+%\usetheme{Bergen}
+%\usetheme{Szeged}
+
+%\usecolortheme{beaver} % Цветовая схема
+%\useinnertheme{circles}
+%\useinnertheme{rectangles}
+
+%\usetheme{HSE}
+
+%%% Работа с русским языком
+\usepackage{cmap}					% поиск в PDF
+\usepackage{mathtext} 				% русские буквы в формулах
+\usepackage[T2A]{fontenc}			% кодировка
+\usepackage[utf8]{inputenc}			% кодировка исходного текста
+\usepackage[english,ukrainian]{babel}	% локализация и переносы
+
+\usepackage{hyperref}
+
+%%% Работа с картинками
+\usepackage{graphicx}  % Для вставки рисунков
+\graphicspath{{images/}{images2/}}  % папки с картинками
+\setlength\fboxsep{3pt} % Отступ рамки \fbox{} от рисунка
+\setlength\fboxrule{1pt} % Толщина линий рамки \fbox{}
+\usepackage{wrapfig} % Обтекание рисунков текстом
+
+%%% Работа с таблицами
+\usepackage{array,tabularx,tabulary,booktabs} % Дополнительная работа с таблицами
+\usepackage{longtable}  % Длинные таблицы
+\usepackage{multirow} % Слияние строк в таблице
+
+%%% Программирование
+\usepackage{etoolbox} % логические операторы
+
+%%% Другие пакеты
+\usepackage{lastpage} % Узнать, сколько всего страниц в документе.
+\usepackage{soul} % Модификаторы начертания
+\usepackage{csquotes} % Еще инструменты для ссылок
+%\usepackage[style=authoryear,maxcitenames=2,backend=biber,sorting=nty]{biblatex}
+\usepackage{multicol} % Несколько колонок
+
+%%% Картинки
+\usepackage{tikz} % Работа с графикой
+\usepackage{pgfplots}
+\usepackage{pgfplotstable}
+
+\title{Знайомство з UNIX}
+\subtitle{Основи адміністрування UNIX систем}
+\author{Легенький М.М.}
+\date{\today}
+\institute[факультет радіофізики, біомедичної електроніки та комп'ютерних систем]{Харківський національний університет імені В. Н. Каразіна}
+
+\begin{document}
+
+\frame[plain]{\titlepage}	% Титульный слайд
+
+\section{Робота з командним рядком}
+\subsection{Запуск Linux та bash у Windows}
+ 
+\begin{frame}
+	\frametitle{\insertsection} 
+	\framesubtitle{\insertsubsection}
+У Windows існує багато способів запуску Linux-команд і скриптів bash:
+	\begin{itemize}
+		\item Git Bash. Git можна завантажити з сайту \href{https://git-scm.com/}{https://git-scm.com/}. 
+		\item Cygwin - це повноцінний емулятор Linux, що надає також можливість встановити різні доповнення. Cygwin можна завантажити з сайту \href{https://www.cygwin.com/}{https://www.cygwin.com/}.
+%      \item Підсистема Windows для Linux. У Windows 10, якщо в ній встановлено підсистему Windows для Linux (WSL), передбачено вбудований метод запуску Linux. Щоб встановити WSL, виконайте наступні дії .
+% 		  {\scriptsize test}
+% 		  \begin{enumerate}
+% 		    \item Натисніть на пошуковому рядку Windows 10.
+% 		    \item Введіть пошуковий запит Control Panel (Панель управління) та відкрийте цю панель.
+% 		    \item Натисніть рядок Programs and Features (Програми та компоненти).
+% 		    \item У лівій частині вікна клацніть на рядку Turn Windows features on or off (Увімкнення та вимкнення компонентів Windows).
+% 		    \item Встановіть прапорець Windows Subsystem for Linux.
+% 		    \item Після перезавантаження системи відкрийте Windows Store (Сховище Windows) та введіть пошуковий запит Linux. Ви побачите список доступних до установки програм.
+% 		    \item Знайдіть та встановіть Ubuntu.
+% 		    \item Після встановлення Ubuntu відкрийте командний рядок Windows, введіть ubuntu і натисніть клавішу Enter.
+% 		  \end{enumerate}
+% 		  
+	\end{itemize} 
+% 		
+		 
+\end{frame}
+
+\subsection{ Підсистема Windows для Linux. }
+
+\begin{frame}
+	\frametitle{\insertsection} 
+	\framesubtitle{\insertsubsection}
+	   У Windows 10 передбачено вбудований метод запуску Linux -- підсистема Windows для Linux (WSL). Щоб встановити WSL, виконайте наступні дії .
+		  {\scriptsize 
+		  \begin{enumerate}
+		    \item Натисніть на пошуковому рядку Windows 10.
+		    \item Введіть пошуковий запит Control Panel (Панель управління) та відкрийте цю панель.
+		    \item Натисніть рядок Programs and Features (Програми та компоненти).
+		    \item У лівій частині вікна клацніть на рядку Turn Windows features on or off (Увімкнення та вимкнення компонентів Windows).
+		    \item Встановіть прапорець Windows Subsystem for Linux.
+		    \item Після перезавантаження системи відкрийте Windows Store (Сховище Windows) та введіть пошуковий запит Linux. Ви побачите список доступних до установки програм.
+		    \item Знайдіть та встановіть Ubuntu.
+		    \item Після встановлення Ubuntu відкрийте командний рядок Windows, введіть ubuntu і натисніть клавішу Enter.
+		  \end{enumerate}
+		  }
+	%	\end{itemize} 
+	
+		 
+\end{frame}
+
+\section{Основи роботи з bash}
+\subsection{Перевірка файлів за допомогою  if}
+\begin{frame}
+  \frametitle{\insertsection} 
+	\framesubtitle{\insertsubsection}
+  
+  \begin{table}
+    \caption{Оператори перевірки файлів}
+    \label{tab:}
+  
+    \begin{center}
+      \begin{tabular}{|c|c|}
+        \hline
+         {\bf Оператор} & {\bf Використання} \\
+         \hline
+         -d & Перевірка чи існує каталог \\
+         \hline
+         -e & Перевірка чи існує файл \\
+         \hline
+         -r & Перевірка чи існує файл і чи є він доступним для читання \\
+         \hline
+         -w & Перевірка чи існує файл і чи є він доступним для запису \\
+         \hline
+         -x & Перевірка чи існує файл і чи є він виконуваним \\
+         \hline
+      \end{tabular}
+    \end{center}
+  \end{table}
+  
+\end{frame}
+
+\subsection{Порівняння чисел за допомогою  if}
+\begin{frame}
+  \frametitle{\insertsection} 
+	\framesubtitle{\insertsubsection}
+  
+  \begin{table}
+    \caption{Числові тестові оператори}
+    \label{tab:}
+  
+    \begin{center}
+      \begin{tabular}{|c|c|}
+        \hline
+         {\bf Оператор} & {\bf Використання} \\
+         \hline
+         -eq & Тест на рівність між числами \\
+         \hline
+         -gt & Перевірка чи є одне число більшим ніж інше \\
+         \hline
+         -lt & Перевірка чи є одне число меншим ніж інше \\
+         \hline
+      \end{tabular}
+    \end{center}
+  \end{table}
+  
+\end{frame}
+
+\subsection{Регулярні вирази}
+\begin{frame}
+  \frametitle{\insertsection} 
+	\framesubtitle{\insertsubsection}
+	Команда \texttt{grep} виконує пошук по вмісту файлів з допомогою шаблону і виводе будь-який рядок, який йому відповідає. Основні опції команди:
+	\begin{itemize}
+	  \item -c -- кількість рядків, що відповідають шаблону;
+	  \item -E -- увімкнути розширений регулярний вираз;
+	  \item -f -- читати шаблон пошуку з файлу;
+	  \item -i -- ігнорувати регістр символів;
+	  \item -l -- вивести лише ім'я файл та шлях, де було знайдено шаблон;
+	  \item -n -- вивести номер рядка файлу, де було знайдено шаблон;
+	  \item -P -- увімкнути механізм регулярних виразів Perl;
+	  \item -r -- виконати рекурсивний пошук підкаталогів.
+	\end{itemize}
+\end{frame}
+
+\begin{frame}
+  \frametitle{\insertsection} 
+	\framesubtitle{\insertsubsection}
+	Команда \texttt{grep} підтримує розширений синтаксис для шаблонів регулярних виразів. Спеціальні значення деяких символів використовуються якщо:  
+\begin{enumerate}
+	  \item додати перед символом зворотній слеш ($\backslash$);
+	  \item використовувати команду \texttt{grep} з опцією -E;
+	  \item використовувати команду \texttt{egrep}.
+\end{enumerate}
+
+Єдині символи на які впливає розширений синтаксис це +, \{,  |, ( та ).
+		  
+\end{frame}
+
+\begin{frame}
+  \frametitle{\insertsection} 
+	\framesubtitle{\insertsubsection}
+	Регулярні вирази -- це шаблони, створені з використанням послідовності символів та метасимволів. Такі метасимволи в регулярних виразах мають спеціальне значення:  
+\begin{itemize}
+	  \item Метасимвол точка (.) відповідає одному будь-якому одному символу, окрім символа нового рядка;
+	  \item Метасимвол знак питання (?) робе будь-який попередній символ необов'язковим;
+	  \item Метасимвол зірочка (*) позначає повторення будь-якого попереднього символу необмежену кількість разів;
+	  \item Метасимвол плюс (+) є аналогічним до метасимволу зірочка (*), різниця полягає в тому, що попередній символ повинен повторитися хоча б один раз.
+\end{itemize}
+	  
+\end{frame}
+
+\begin{frame}
+  \frametitle{\insertsection} 
+	\framesubtitle{\insertsubsection}
+	Для групування символів можна використовувати дужки (), на символи в дужках можна посилатися. Логічний оператор АБО представляється символом вертикальної риски (|) і може використовуватися в дужках.
+	В регулярних виразах квадратні дужки [] призначено для визначення класів і списків допустимих  символів.
+	\begin{table}
+	  %\caption{}
+	  \label{tab:}
+	
+	  \begin{center}
+	    \begin{tabular}{|c|c|}
+	    \hline
+	      {\bf Приклад} & {\bf Значення} \\
+	       \hline
+	       [abc] & Символ a або b або c\\
+	       \hline
+	       [1-5] & Цифра в діапазоні від 1 до 5\\
+	       \hline
+	       [a-zA-Z] & Будь-яка велика чи маленька літера від a до z\\
+	       \hline
+	       [0-9+-*/] & Число або один із вказаних математичних символів\\
+	       \hline
+	       [0-9a-fA-F] & Шістнадцятковий символ\\
+	       \hline
+	    \end{tabular}
+	  \end{center}
+	\end{table}
+\end{frame}
+
+\begin{frame}
+  \frametitle{\insertsection} 
+	\framesubtitle{\insertsubsection}
+	Існують скорочення для наборів символів:
+	\begin{table}
+	  %\caption{}
+	  \label{tab:}
+	
+	  \begin{center}
+	    \begin{tabular}{|c|c|}
+	    \hline
+	      {\bf Символ} & {\bf Значення} \\
+	       \hline
+	       $\backslash$s & Пробіловий символ\\
+	       \hline
+	       $\backslash$S & Непробіловий символ\\
+	       \hline
+	       $\backslash$d & Цифровий символ\\
+	       \hline
+	       $\backslash$D & Нецифровий символ\\
+	       \hline
+	       $\backslash$w & Слово\\
+	       \hline
+	       $\backslash$W & Не слово\\
+	       \hline
+	       $\backslash$x & Шістнадцяткове число\\
+	       \hline
+	    \end{tabular}
+	  \end{center}
+	\end{table}
+	Щоб застосувати ці скорочення треба використовувати команду \texttt{grep} з опцією -P.
+\end{frame}
+
+\begin{frame}
+  \frametitle{\insertsection} 
+	\framesubtitle{\insertsubsection}
+	Існують інші символьні класи. Вони відповідають лише одному символу і використовуються всередині квадратних дужок.
+	\begin{table}
+	  %\caption{}
+	  \label{tab:}
+	
+	  \begin{center}
+	    \begin{tabular}{|c|c|}
+	    \hline
+	      {\bf Символьний клас} & {\bf Значення} \\
+	       \hline
+	       [:alnum:] & Будь-який буквенно цифровий символ\\
+	       \hline
+	       [:alpha:] & Будь-який алфавітний символ\\
+	       \hline
+	       [:cntrl:] & Будь-який керуючий символ\\
+	       \hline
+	       [:digit:] & Будь-яка цифра\\
+	       \hline
+	       [:graph:] & Будь-який графічний символ\\
+	       \hline
+	       [:lower:] & Будь-який символ нижнього регістру\\
+	       \hline
+	       [:print:] & Будь-який печатний символ\\
+	       \hline
+	       [:punct:] & Будь-який розділовий знак\\
+	       \hline
+	       [:space:] & Будь-який пробільний символ\\
+	       \hline
+	       [:upper:] & Будь-який символ верхнього регістру\\
+	       \hline
+	       [:xdigit:] & Будь-яка шістнадцяткова цифра\\
+	       \hline
+	    \end{tabular}
+	  \end{center}
+	\end{table}
+	
+\end{frame}
+
+\begin{frame}
+  \frametitle{\insertsection} 
+	\framesubtitle{\insertsubsection}
+Зворотні посилання на регулярні вирази є однією із найбільш потужних операцій регулярних виразів. Приклад:
+
+\textbf{egrep~\textquotesingle$<([A-Za-z]*)>.*</\backslash1>$\textquotesingle~tags.txt}
+
+Тут $\backslash1$ -- зворотнє посилання на вираз у дужках $[A-Za-z]*$. Аналогічно можна послатися і на інші вирази згруповані за допомогою дужок, як $\backslash2$, $\backslash3$ і так далі.
+
+Квантифікатори вказують скільки разів елемент повинен з'явитися в рядку і визначаються фігурними дужками \{\}. Наприклад, квантфікатор \{5\} позначає, що елемент повинен повторитися рівно 5 разів, \{3,6\} -- від 3 до 6 разів, \{5,\} -- 5 або більше разів.
+
+Символ карет (${}^{\wedge}$) призначено для прив'язки шаблону до початку рядка, символ \$ -- для прив'язки до кінця рядка, $\backslash b$ -- позначає границю слова (тобто пропуск).
+\end{frame}
+
+\section{Операції за допомогою командного рядка}
+\subsection{Збір інформації}
+
+\begin{frame}
+  \frametitle{\insertsection} 
+	\framesubtitle{\insertsubsection}
+Команда \texttt{cut} використовується для вилучення (вирізання) окремих частин файлу. Команда порядково читає файл та аналізує рядок за допомогою вказаного роздільника (за замовчуванням -- символ табуляції). Для вилучення частин рядка можна використовувати номер символа або номер поля (поля розділяються роздільниками). Основні параметри команди:
+\begin{itemize}
+  \item -c -- номери символів для вилучення;
+  \item -d -- символ, що використовується як роздільник полів;
+  \item -f -- номери полів для вилучення.
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+  \frametitle{\insertsection} 
+	\framesubtitle{\insertsubsection}
+Для виконання команди на віддаленій системі та перенаправлення виводу до файлу в локальній системі слід виконати команду:
+
+ssh myserver ps > /tmp/ps.out
+
+Для виконання команди на віддаленій системі та перенаправлення виводу до файлу на віддаленій системі слід виконати команду:
+
+ssh myserver ps $\backslash$> /tmp/ps.out 
+
+З використанням SSH ви можете брати скрипти, що знаходяться в вашій локальній системі, і запускати їх на віддаленій системі:
+
+ssh myserver < ./script.sh    
+	
+\end{frame}
+
+\begin{frame}
+  \frametitle{\insertsection} 
+	\framesubtitle{\insertsubsection}
+Файли журанлів у Linux зазвичай зберігаються у каталозі /var/log. Зібрати їх можна командою tar:
+\textbf{tar -czf name /var/log}.
+Опція -c використовується для створення архівного файлу, -z -- архівування файлу, -f -- вказівка імені файлу виводу.
+\begin{table}
+%   \caption{}
+  \label{tab:}
+
+  \begin{center}
+    \begin{tabular}{|p{100pt}|p{200pt}|}
+    \hline
+       {\bf Розташування журналу} & {\bf Опис} \\
+       \hline
+       /var/log/apache2 & Журнали доступу та помилок для веб-сервера Apache\\
+       \hline
+       /var/log/auth.log & Входи до системи, прівілейований доступ, тощо\\
+       \hline
+       /var/log/kern.log & Журнали ядра\\
+       \hline
+       /var/log/messages & Загальна некритична інформація системи\\
+       \hline
+       /var/log/syslog & Загальні системні журнали\\
+       \hline
+       /etc/syslog.conf або /etc/rsyslog.conf & Інформація про те, де в даній системі зберігаються файли журналів\\
+       \hline
+    \end{tabular}
+  \end{center}
+\end{table}
+\end{frame}
+
+\begin{frame}
+  \frametitle{\insertsection} 
+	\framesubtitle{\insertsubsection}
+Конструкція \$\{1:0:2\} дозволяє взяти з початку рядка (зміщення 0 байт) підрядок першого аргументу (\$1) довжиною 2 байти.	
+
+Конструкція VAR=\$\{1:-val\} присвоює змінній VAR значення першого позиційного параметру або значення val якщо перший позиційний параметр відсутній.
+
+Для того, щоб отримати значення змінної VAR із заміною old на new слід використовувати конструкцію \$\{VAR/old/new\}. Якщо використовувати подвійний слеш \$\{VAR//old/new\} виконується заміна всіх входжень, а не тільки першого. 
+
+Символ  \# можна використовувати для обрізання рядків. Щоб вирізати підрядок substring у рядку string використовується конструкція \$\{string\#substring\}. Як substring можна використовувати шаблон. Для видалення на початку рядка використовується \#\#, а в кінці рядка -- \%\%.
+\end{frame}	
+
+\begin{frame}
+  \frametitle{\insertsection} 
+	\framesubtitle{\insertsubsection}
+	\begin{table}
+	  \caption{Команди для збіру даних про систему}
+	  \label{tab:}
+	
+	  \begin{center}
+	    \begin{tabular}{|c|c|}
+	    \hline
+	      {\bf Команда} & {\bf Вивід інформації про} \\
+	      \hline
+	      uname -a & Версія ОС \\
+	      \hline
+	      cat /proc/cpuinfo & Системне обладнання \\
+	      \hline
+	      ifconfig & Мережеві інтерфейси \\
+	      \hline
+	      route & Таблиця маршрутизації \\
+	      \hline
+	      arp -a & Таблиця ARP\\
+	      \hline
+	      netstat -a & Мережеві підключення \\
+	      \hline
+	      mount & Файлові системи \\
+	      \hline
+	      ps -e & Запущені просеци \\
+	    \hline
+	    \end{tabular}
+	  \end{center}
+	\end{table}
+\end{frame}	
+
+\begin{frame}
+  \frametitle{\insertsection} 
+	\framesubtitle{\insertsubsection}
+Для розбору опцій зручно використовувати команду getopts. Команда getopts повертає нульовий код завершення, якщо опцію знайдено. Якщо в поточному рядку більше немає аргументів або поточний аргумент розпочинається не з дефісу, то getopts повертає ненульовий код завершення.	
+{\scriptsize
+\begin{itemize}
+  \item Перший аргумент, що передається команді getopts -- це список список літер, що позначають опції. Двокрапка після літери позначає, що опція потребує значення. Двокрапка на початку дає вказівку не показувати звичні повідомлення про помилки.
+  \item Другий аргумент, що передається команді getopts -- це ім'я змінної, яка отримає ім'я знайденої опції. Якщо очікується, що опція буде мати значення, це значення буде записано до змінної OPTARG.
+  \item Також використовується попередньо встановлена в 1 змінна OPTIND. Ця змінна містить індекс наступного аргументу, який слід обробити. 
+  \item Якщо буде знайдено неопізнану опцію, змінна буде містити ?, а OPTARG буде містити цю невідому опцію.
+  \item Якщо буде знайдено опцію, яка потребує значення, але значення відсутнє, змінна буде містити :, а OPTARG буде містити цю опцію, що потребує аргумента.
+\end{itemize}
+}
+\end{frame}	
+
+\begin{frame}
+  \frametitle{\insertsection} 
+	\framesubtitle{\insertsubsection}
+Для виконання функцій пошуку служить команда find.	
+\begin{itemize}
+\item Для виконання пошуку файлів по імені використовується команда find з опцією -name, після якої вказується шаблон для пошуку. Для того, щоб пошук був нечуттєвим до регістру слід використовувати опцію -iname.
+\item Команда find може запускати конкретну команду для кожного знайденого файлу. Для цього використовується опція -exec, після якої вказується конкретна команда, вона замінює фігурні дужки (\{\}) на знйдений шлях до файлу.
+\item Параметр -size команди find слід використовувати для пошуку файлів за розміром.
+\item Для пошуку файлів по часу зміни використовуються параметри -mmin (час у хвилинах) та -mtime(час у годинах). Від'ємне число позначає менше вказаного значення, додатнє -- більше, а вісутність знаку -- точне значення. 
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+  \frametitle{\insertsection} 
+	\framesubtitle{\insertsubsection}
+Для пошуку вмісту файлів використовується команда grep.
+\begin{itemize}
+  \item Параметр -r вказує, що пошук слід проводити рекурсивно у вказаному каталозі.
+  \item Параметр -i дозволяє не враховувати регістр.
+  \item Параметр -e дозволяє вказати шаблон регулярного виразу.
+\end{itemize}
+Команда file дозволяє ідентифікувати тип файлу, порівнюючи його вміст з відомими шаблонами, що назиаються магічні числа. 
+
+\end{frame}		
+	
+\subsection{Обробка даних}
+ 
+\begin{frame}
+	\frametitle{\insertsection} 
+	\framesubtitle{\insertsubsection}
+Команду \textbf{awk} можна використовувати для виводу тих рядків, що задовольняють умові. Приклад:	
+
+awk \textquotesingle\$2 == "Jones" \{print \$0\}\textquotesingle file
+
+Тут \$2 позначає друге поле в рядку (роздільник за замовчуванням -- пропуск), \$0 -- увесь рядок.
+
+Команда \textbf{join} поєднує рядки із двох файлів із загальними полями. Опції -1 та -2 дозволяють задати поля для об'єднання у першому та другому файлі, відповідно. Опція -t дозволяє задати роздільник.
+
+Команда \textbf{sed} може використовуватися для заміни символів чи послідовності символів <regex> на вираз <exp>. Для цього використовується шаблон sed \textquotesingle s/<regex>/<exp>/g\textquotesingle~file. Опція -g вказує, що слід замінити всі входження шаблону, а не тільки перший.
+\end{frame}			
+
+\begin{frame}
+	\frametitle{\insertsection} 
+	\framesubtitle{\insertsubsection}	
+Команда \textbf{tail} використовується для виводу останніх (за замовчуванням 10) рядків файу. Опція -f дозволяє виконувати постійний моніторинг останніх рядків файлу підчас їх додавання. Опція -n дозволяє вивести вказану кількість останніх рядків.
+
+Команда \textbf{tr} використовується для перетворення (заміни) одного символу на інший. Ввід даних до цієї команди здійснюється або з стандартного пооку вводу, або із виводу інших програм через перенаправлення. Опція -d дозволяє видалити вказані знаки зі вхідного потоку. Опція -s дозволяє замінити екземпляри символу, що повторюються, одним.	
+\end{frame}
+
+\begin{frame}
+	\frametitle{\insertsection} 
+	\framesubtitle{\insertsubsection}	
+Одним із розповсюджених текстових форматів даних називається CSV, і позначає дані, розділені комами (comma-separeted values). Поля можуть бути вказані у подвійних лапках ("), перший рядок може бути заголовочним.
+\begin{itemize}
+\item Щоб отримати із файлу лише перший стовпець значень використовується команда cut -d\textquotesingle,\textquotesingle~-f1 file.
+\item Щоб видалити подвійні лапки слід передати вивід до команди tr з опцією -d: cut -d\textquotesingle,\textquotesingle~-f1 file | tr -d \textquotesingle"\textquotesingle . 
+\item Щоб видалити заголовок рядка використовується команда tail з опцією -n та значенням +2: cut -d\textquotesingle,\textquotesingle~-f1 file | tr -d \textquotesingle"\textquotesingle | tail -n +2.
+\item Щоб обробляти поля порядково також можна використовувати команду awk. Наприклад команда awk -F``,''~\textquotesingle \{print \$4\}\textquotesingle~file обирає четверте поле з файлу, опція -F служить для вказання роздільника.
+\end{itemize}  
+\end{frame}
+
+\begin{frame}
+	\frametitle{\insertsection} 
+	\framesubtitle{\insertsubsection}	
+Розширена мова розмітки XML дозволяє довільно створювати теги та елементи, що описують дані. Приклад:\\
+<book title=``Cybersecurity Ops with bash''~edition=``1''>\\
+\quad<author>\\
+\quad\quad<firstName>Paul</firstName>\\
+\quad\quad<lastName>Troncone</lastName>\\
+\quad</author>\\
+\quad<author>\\
+\quad\quad<firstName>Carl</firstName>\\
+\quad\quad<lastName>Albing</lastName>\\
+\quad</author>\\
+</book>
+\end{frame}
+
+\begin{frame}
+	\frametitle{\insertsection} 
+	\framesubtitle{\insertsubsection}	
+Щоб шукати в XML та отримувати дані із тегів використовується команда grep. Приклад (опція -o позначає повернути лише текст, що відповдає регулярному виразу, а не всьому рядку):
+
+grep -o \textquotesingle<tag>.*</tag>\textquotesingle~file.xml
+
+Щоб шукати регулярний вираз на декількох рядках використовується опція -z.
+
+Щоб отримати вираз всередині тегу використовується команда sed.
+
+... | sed \textquotesingle s/<[${}^{\wedge}$>]*>//g\textquotesingle
+\begin{itemize}
+  \item Шаблон розпочинаєтся з літералу <;
+  \item $[{}^{\wedge}>]*$ означає нуль або будь-яку кількість будь-яких символів окрім >;  
+  \item в кінці літерал >. 
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+	\frametitle{\insertsection} 
+	\framesubtitle{\insertsubsection}	
+JavaScript Object Notation (JSON) - популярний формат файлів, що містить в собі об'єкти, масиви та пари ім'я/значення. Приклад:\\
+\{\\
+\quad`'title`': `'Cybersecurity Ops with bash`',\\
+%\quad`'edition`': 1,\\
+\quad`'authors`': [\\
+\quad\quad\{\\
+\quad\quad`'firstName`': `'Paul`',\\
+\quad\quad`'lastName`': `'Troncone`'\\
+\quad\quad\}\\
+\quad\quad\{\\
+\quad\quad`'firstName`': `'Carl`',\\
+\quad\quad`'lastName`': `'Albing`'\\
+\quad\quad\}\\
+\quad]\\
+\}
+\end{frame}
+
+\begin{frame}
+	\frametitle{\insertsection} 
+	\framesubtitle{\insertsubsection}	
+Для отримання із JSON-файлу пари ключ/значення key використовується наступна команда:
+
+grep -o \textquotesingle "key": ".*" \textquotesingle~file.json
+
+Щоб видалити ключ та вивести лише значення, можна передати вивід команді cut, отримати друге поле та видалити лапки командою tr:
+
+... | cut -d`'~`'~-f2  | tr -d \textquotesingle  $\backslash$" \textquotesingle  
+\end{frame}
+
+\subsection{Аналіз даних}
+
+\begin{frame}
+	\frametitle{\insertsection} 
+	\framesubtitle{\insertsubsection}
+Команда \textbf{sort} використовується для сортування текстового файлу в числовому та алфавитному порядку. Опції команди:
+\begin{itemize}
+  \item -r - сортувати за убуванням;
+  \item -f - ігнорувати регістр;
+  \item -n - використовувати числовий порядок;
+  \item -k - обрати номер поля для сортування;
+  \item -t - вказати роздільник.
+\end{itemize}
+Команда \textbf{uniq} дозволяє видалити у файлі всі рядки, що повторюються. Перед використанням цієї команди файл слід відсортувати. Опції команди:
+\begin{itemize}
+  \item -c - вивести, скільки разів рядок повторюється;
+  \item -f - перед порівнянням ігнорувати вказану кількість полів;
+  \item -i - ігнорувати регістр.
+\end{itemize} 
+\end{frame}
+
+\end{document}
