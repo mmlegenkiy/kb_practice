@@ -2,7 +2,7 @@
 *.fdb_latexmk
 *.fls
 *.info
-*.log
+kb_inf.log
 *.nav
 *.out
 *.pdf
