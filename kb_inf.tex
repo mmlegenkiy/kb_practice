@@ -605,7 +605,20 @@ grep -o \textquotesingle "key": ".*" \textquotesingle~file.json
 	\framesubtitle{\insertsubsection}
 Команда declare -A NAME дозволяє задати асоціативний масив NAME. Щоб отримати доступ до елементу масиву NAME з індексом index використовується наступний синтаксис \$\{NAME[index]\}. Щоб отримати всі можливі значення індексу (ключі, якщо розглядати асоціативний масив як хеш-таблицю) \$\{!NAME[@]\} .
 
+Робота з git:
 
+git clone http://github.com/mmlegenkiy/kb\textunderscore practice
+
+git remote add origin https://mmlegenkiy:\$TOKEN@github.com/mmlegenkiy/kb\textunderscore practice.git
+
+git push origin master
+
+\end{frame}
+
+\begin{frame}
+	\frametitle{\insertsection} 
+	\framesubtitle{\insertsubsection}
+Команда local -i name задає всередині функції локальну змінну name, ця змінна є невідомою назовні функції. Опція -i вказує на те, що ця змінна є цілим числом.
 \end{frame}
 
 \end{document}
