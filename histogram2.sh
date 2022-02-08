@@ -19,6 +19,7 @@ function pr_bar ()
 	((raw > 0 && scaled == 0)) && scaled=1
 
 	for((i=0; i<scaled; i++)) ; do printf '#' ; done
+	printf " $raw"
 	printf '\n'
 } # pr_bar
 #

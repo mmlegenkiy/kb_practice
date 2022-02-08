@@ -27,8 +27,20 @@ function pr_bar ()
 declare -A RA
 declare -i MAXBAR max
 max=0
-MAXBAR=50 # размер самой длинной строки
+while getopts ':s:' opt; do
+	case "${opt}" in
+		s) # option s is obtained
+			MAXBAR=$OPTARG
+			echo s obtained
+			;;
+		*) # option s is not obtained
+			MAXBAR=50 # размер самой длинной строки
+			echo s not obtained
+			;;
+	esac
+done
 
+echo $MAXBAR
 while read labl val
 do
 	let RA[$labl]=$val
