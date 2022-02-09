@@ -22,6 +22,19 @@ function mismatch ()
 	return 0
 }
 
+# предварительная обработка лог-файла (stdin),
+# чтобы выбрать IP-адреса и пользовательские агенты
+while getopts ':f:' opt; do
+	case "${opt}" in
+		f) # there is option -f
+			filename=$OPTARG
+			;;
+		*) # other option or no options
+			filename=""
+			;;
+	esac
+done
+shift $((OPTIND - 1))
 if [ $# -gt 0 ]
 then
 	if [ -f $1 ]
@@ -36,9 +49,7 @@ else
 fi
 KNSIZE=${#KNOWN[@]}
 
-# предварительная обработка лог-файла (stdin),
-# чтобы выбрать IP-адреса и пользовательские агенты
-awk -F'"' '{print $1, $6}' | \
+awk -F'"' '{print $1, $6}' $filename | \
 while read ipaddr dash1 dash2 dtstamp delta useragent
 do
 	if mismatch "$useragent"
