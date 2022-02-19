@@ -12,12 +12,17 @@
 function scan ()
 {
 	host=$1
-       	printf '%s' "$host"
+       	printf '%s' "$host" 
        	for ((port=1;port<1024;port++))
 	do
        		# порядок перенаправления важен по двум причинам
 		echo >/dev/null 2>&1 < /dev/tcp/${host}/${port}
-		if (($? == 0)) ; then printf ' %d' "${port}" ; fi
+		if (($? == 0)) 
+	       	then 
+			printf ' %d open\n' "${port}" 
+		else
+			printf ' %d closed\n' "${port}"
+	       	fi
 	done
 	echo # или вывести '\n'
 }
@@ -32,9 +37,11 @@ function scan ()
 #
 
 printf -v TODAY 'scan_%(%F)T' -1 # например, scan_2017-11-27
-OUTFILE=${1:-$TODAY}
+OUTFILE=$TODAY
+
 
 while read HOSTNAME
 do
+	echo "scan $HOSTNAME"
 	scan $HOSTNAME
-done > $OUTFILE
+done 
