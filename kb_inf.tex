@@ -667,4 +667,147 @@ git push origin master
 
  \end{frame}
 
+\begin{frame}
+ 	\frametitle{\insertsection} 
+ 	\framesubtitle{\insertsubsection}
+xargs - утиліта для формування списку аргументів і виконання команди у UNIX-подібних операційних системах.
+
+sha1sum - утиліта для друку та перевірки контрольних сум SHA1. Використання команди sha1sum -c file приведе до того, що буде виконуватися перевірка контрольної суми для кожного вказаного у file файлу. При використанні опції --quiet буде друкуватись лише інформація про файли, що відрізняються.    
+
+Для порівняння двох файлів можна використовувати команду join. Обидва файли повинні бути відсортовані. Для співставлення потрібних полів файлів використовуються опції вигляду -1 1 та -2 2. Якщо співпадіння не знайдено параметр -а 1 вказує виводити поле із першого файлу.  
+
+ \end{frame}
+ 
+ \begin{frame}
+ 	\frametitle{\insertsection} 
+ 	\framesubtitle{\insertsubsection}
+sdiff file1 file2 використовується для друку невідповідностей у файлах у вигляді таблиці. Кожен рядок виводу команди містить: або пару рядків у файлах розділених пропуском, у випаду співпадіння або знаком | у випадку неспівпадіння, або рядок файлу file1 з приміткою <, якщо він відсутній у файлі file2, або відповідно рядок file2 з приміткою >. 
+ \end{frame}
+
+\subsection{Аналіз шкідливих програм}
+ 
+ \begin{frame}
+ 	\frametitle{\insertsection} 
+ 	\framesubtitle{\insertsubsection}
+Команду curl можна використовувати для передачі даних мережею між клієнтом та сервером, вона підтримує декілька протоколів, зокрема HTTP, HTTPS, FTP, SFTP та Telnet. Деякі опції команди curl:
+\begin{itemize}
+  \item -A - для надсилання на сервер вказати рядок агента користувача HTTP.
+  \item -d - дані для надсилання із запитом HTTP POST.
+  \item -G - використовувати для надсилання даних запит HTTP GET, а не POST.
+  \item -I - отримати тільки заголовок протоколу (HTTP, FTP).
+  \item -L - прямувати за перенаправленням.
+  \item -s - не показувати індикатор виконання або повідомлення про помилки.
+\end{itemize}
+
+\end{frame}
+
+\begin{frame}
+ 	\frametitle{\insertsection} 
+ 	\framesubtitle{\insertsubsection}
+vi - повнофункціональний текстовий редактор командного рядка.
+\begin{table}
+  \caption{Загальні команди vi}
+  \label{tab:}
+
+  \begin{center}
+    \begin{tabular}{|c|c|}
+    \hline
+      \textbf{Команда} & \textbf{Призначення}  \\
+    \hline
+      b & одне слово назад \\
+    \hline
+      cc або cw & замінити поточний рядок/слово \\
+    \hline
+      dw або dd & видалити поточне слово/рядок \\
+    \hline
+      :w filename & записати/зберегти файл з іменем filename \\
+    \hline
+      :q! & вийти без збереження \\
+    \hline
+      ZZ & зберегти та вийти \\
+    \hline
+      :set number & показати номери рядків \\
+    \hline
+      / або ?  & пошук вперед/у зворотному напрямі \\
+    \hline
+      n & знайти наступне входження \\
+    \hline
+      :\%!xxd & відобразити файл у шістнадцятковому форматі \\
+    \hline 
+    \end{tabular}
+  \end{center}
+\end{table}
+  
+\end{frame}
+
+\begin{frame}
+ 	\frametitle{\insertsection} 
+ 	\framesubtitle{\insertsubsection}
+Команда xxd виводе на екран файл у двійковому або шістнадцятковому представленні. Загальні параметри команди:
+\begin{itemize}
+   \item  -b - відобразити файл у двійковому, а не шістнадцятковому представленні.
+   \item  -l - вивести кількість байт двійкового або шістнадцяткового файлу.
+   \item  -s - почати друк з позиції байту n.
+ \end{itemize} 
+
+Щоб перетворити шістнадцяткове число num до десяткової системи числення використовується команда printf $"\%d"$~0xnum. Навпаки - printf $"\%x"$~num. Щоб перетворити символ sym із ASCII до шістнадцяткової системи використовується команда printf \textquotesingle sym\textquotesingle ~ | xxd. Навпаки - використовується команда xxd з опцією -r. Щоб перетворити символ sym із ASCII до двійкової системи команда printf та xxd з опцією -b.
+ 
+\end{frame}
+
+\begin{frame}
+ 	\frametitle{\insertsection} 
+ 	\framesubtitle{\insertsubsection}
+Для отримання тексту із виконуваного файлу file використовується команда egrep -a -o \textquotesingle $\backslash$ b[[:print:]]\{2,\}$\backslash$ b\textquotesingle ~file. Тут регулярний вираз шукає у файлі два або більше друкованих символи в рядку, які відображаються як безперервне слово. За допомогою параметра -a двійковий виконуваний файл обробляється як текстовий. Параметр -o виводе тільки відповідний текст, а не весь рядок. 
+
+Корисно може бути відсортувати рядки по розміру від самих довгих до самих коротких. Це можна зробити за допомогою команди
+
+... | awk '\{print length(), \$0\}' | sort -rnu
+\end{frame}
+
+\begin{frame}
+ 	\frametitle{\insertsection} 
+ 	\framesubtitle{\insertsubsection}
+VirusTotal - це комерційний онлайн-інструмент, який використовується для вивантаження файлів та їх перевірки багатьма антивірусними програмами та іншими інструментами статистичного аналізу, що визначити чи є ці файли шкідливими.
+\begin{table}
+  \caption{Елементи API VirusTotal}
+  \label{tab:}
+\begin{center}
+    \begin{tabular}{|p{50pt}|p{170pt}|p{40pt}|}
+    \hline
+     {\footnotesize \textbf{Опис}}  & {\footnotesize \textbf{URL запиту}} & {\footnotesize \textbf{Параметри}} \\
+  \hline
+     {\scriptsize Отримання звіту про сканування } & {\scriptsize https://www.virustotal.com/vtapi/v2/file/report} & {\scriptsize apikey, resource, allinfo} \\
+  \hline
+     {\scriptsize Вивантаження та сканування файлу} & {\scriptsize https://www.virustotal.com/vtapi/v2/file/scan} & {\scriptsize apikey, file} \\
+  \hline
+    \end{tabular}
+  \end{center}
+\end{table}
+\end{frame}
+
+\begin{frame}
+ 	\frametitle{\insertsection} 
+ 	\framesubtitle{\insertsubsection}
+Звіт щодо підозрілого файлу можна отримати надіславши до VirusTotal хеш підозрілого файлу.
+\begin{itemize}
+  \item ваш ключ API, отриманий від VirusTotal.
+  \item хеш файлу MD5, SHA1 або SHA256.
+  \item якщо true, буде виведено додаткову інформацію.
+\end{itemize}
+
+Приклад:
+
+curl "https://www.virustotal.com/vtapi/v2/file/report?
+
+apikey=replacewithapikey\&resource=db349b97c37d22f5
+
+ea1d1841e3c89eb4\&allinfo=false" $>$ file
+
+З отриманого JSON-файлу можна отримати інформацію про те, чи був файл визначений як шкідливий командою:
+
+grep -Po \textquotesingle\{"detected": true.*?"result":.*?,\textquotesingle ~file 
+
+В grep опція -P дозволяє використовувати .*? як лінивий квантифікатор, що відповідає мінімальній кількості необхідих символів.
+\end{frame}
+
 \end{document}
