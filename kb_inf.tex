@@ -810,4 +810,65 @@ grep -Po \textquotesingle\{"detected": true.*?"result":.*?,\textquotesingle ~fil
 В grep опція -P дозволяє використовувати .*? як лінивий квантифікатор, що відповідає мінімальній кількості необхідих символів.
 \end{frame}
 
+\begin{frame}
+ 	\frametitle{\insertsection} 
+ 	\framesubtitle{\insertsubsection}
+Нові файли можна завантажити для аналізу на VirusTotal, якщо інформації про них ще немає в базі даних. Для цього треба надіслати запит HTTP POST на URL-адресу https://www.virustotal.com/vtapi/v2/file/scan, при цьому слід надати свій ключ API та шлях для завантаження файлу. Приклад:
+
+curl --request POST --url 'https://www.virustotal.com/vtapi/v2
+
+/file/scan'--form 'apikey=replacewithapikey' --form 'file=@і/c
+
+/Windows/System32/calc.exe' 
+
+Після такого запита повертається об'єкт JSON, що містить метадані файлу, які можна викорстовувати для отримання звіту про нього.
+\end{frame}
+
+\begin{frame}
+ 	\frametitle{\insertsection} 
+ 	\framesubtitle{\insertsubsection}
+
+\begin{table}
+  \caption{VirusTotal URL API}
+  \label{tab:}
+\begin{center}
+    \begin{tabular}{|p{35pt}|p{185pt}|p{40pt}|}
+    \hline
+     {\footnotesize \textbf{Опис}}  & {\footnotesize \textbf{URL запиту}} & {\footnotesize \textbf{Параметри}} \\
+  \hline
+     {\scriptsize Звіт по URL } & {\scriptsize https://www.virustotal.com/vtapi/v2/url/report} & {\scriptsize apikey, resource, allinfo, scan} \\
+  \hline
+     {\scriptsize Доменний звіт} & {\scriptsize https://www.virustotal.com/vtapi/v2/domain/report} & {\scriptsize apikey, domain} \\
+  \hline
+  	{\scriptsize Звіт по IP} & {\scriptsize https://www.virustotal.com/vtapi/v2/ip-address/report} & {\scriptsize apikey, ip} \\
+  \hline
+    \end{tabular}
+  \end{center}
+\end{table}
+
+Приклад запиту на сканування URL-адреси:
+
+curl \textquotesingle https://www.virustotal.com/vtapi/v2/url/report?apikey=
+
+replacewithapikey\&resource=www.oreilly.com\&allinfo=false\&scan=1\textquotesingle
+\end{frame}
+
+\subsection{Форматування та звітність}
+
+\begin{frame}
+ 	\frametitle{\insertsection} 
+ 	\framesubtitle{\insertsubsection}
+За допомогою команди tput можна керувати різними функціями терміналу, такими як переміщення або зміна вигляду курсору, зміна властивостей тексту та очищення певних областей екрану терміналу. Основні параметри команди:
+\begin{itemize}
+	\item clear - очистити екран.
+	\item cols - роздрукувати кількість стовпців терміналу.
+	\item cup <x> <y> - перемістити курсор в положення <x>, <y>.
+	\item lines - роздрукувати кількість рядків терміналу.
+	\item rmcup - повернутись до звичайного екрану терміналу.
+	\item setab - встановити колір фону терміналу.
+	\item setaf - встановити основний колір терміналу.
+	\item smcup - зберегти поточний екран терміналу та очистити екран.
+\end{itemize}	
+\end{frame}
+
 \end{document}
